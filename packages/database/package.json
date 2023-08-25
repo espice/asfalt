@@ -7,6 +7,7 @@
   "scripts": {
     "prisma:dev": "prisma migrate dev && tsc",
     "prisma:deploy": "prisma migrate deploy && prisma generate && tsc",
+    "prisma:push": "prisma db push && tsc",
     "prisma:generate": "prisma generate && tsc",
     "prisma:format": "prisma format",
     "prisma": "prisma"

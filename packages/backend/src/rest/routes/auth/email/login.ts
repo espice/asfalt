@@ -8,6 +8,6 @@ export const POST = createRoute({
         })
     },
     handler: async (req, reply) => {
-        
+        reply.send("Hello")
     }
 })

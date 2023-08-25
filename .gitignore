@@ -15,7 +15,7 @@ build
 .pnpm-store
 
 # local env files
-.env*
+.env
 
 # vercel
 .turbo
