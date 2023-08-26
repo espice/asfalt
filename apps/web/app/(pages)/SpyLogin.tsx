@@ -1,14 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Fira_Code } from "next/font/google";
 import Input from "../components/Input";
+import MatrixBackground from "../components/MatrixBackground";
 
 const fira = Fira_Code({ subsets: ["latin"] });
 
 export default function SpyLoginPage() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [showMatrix, setShowMatrix] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowMatrix(false);
+    }, 3000);
+  }, []);
 
   return (
     <body className={fira.className}>
@@ -24,6 +32,7 @@ export default function SpyLoginPage() {
           />
         </div>
       </div>
+      {showMatrix && <MatrixBackground timeout={50} />}
     </body>
   );
 }
