@@ -2,6 +2,11 @@ import React from "react";
 import { gqlClient } from "@/utils/gql";
 import { notFound } from "next/navigation";
 import { AuthProvider } from "@/utils/context/AuthCtx";
+import Nav from "@/modules/Nav";
+
+import { Fira_Code } from "next/font/google";
+import { cn } from "@/utils/tw";
+const fira = Fira_Code({ subsets: ["latin"] });
 
 async function getUser() {
   try {
@@ -28,5 +33,17 @@ export default async function Layout({
 
   if (!user.me) notFound();
 
-  return <AuthProvider user={user.me}>{children}</AuthProvider>;
+  return (
+    <AuthProvider user={user.me}>
+      <section
+        className={cn(
+          "bg-black text-primary h-screen pt-[80px]",
+          fira.className
+        )}
+      >
+        <Nav />
+        {children}
+      </section>
+    </AuthProvider>
+  );
 }
