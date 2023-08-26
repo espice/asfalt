@@ -15,7 +15,7 @@ export default function IndexPage() {
         const res = await axios.post("/auth/spies/code", { code });
         setGranted(res.data.granted);
         if (res.data.granted) {
-          // window.localStorage.removeItem("dc.at");
+          window.localStorage.removeItem("dc.at");
         }
       }
     }

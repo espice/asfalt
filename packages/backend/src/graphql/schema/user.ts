@@ -19,13 +19,29 @@ builder.prismaObject("User", {
         }
       },
       resolve: (root) => {
-        console.log(root);
         return root.id;
       },
     }),
     username: t.exposeString("username"),
     isAdmin: t.exposeBoolean("isAdmin"),
+    sessions: t.relation("sessions"),
   }),
+});
+
+builder.prismaObject("Session", {
+  fields: (t) => ({
+    id: t.exposeID("id"),
+    ip: t.exposeString("ip"),
+    device: t.exposeString("device"),
+    createdAt: t.string({
+      resolve: (root) => {
+        return root.createdAt.toISOString();
+      },
+    }),
+  }),
+  authScopes: {
+    isAdmin: true,
+  },
 });
 
 builder.queryFields((t) => ({
@@ -38,6 +54,12 @@ builder.queryFields((t) => ({
         },
         ...query,
       });
+    },
+  }),
+  agents: t.withAuth({ isAdmin: true }).prismaField({
+    type: ["User"],
+    resolve: async (query, _root, _args, ctx) => {
+      return await prisma.user.findMany({ ...query });
     },
   }),
 }));

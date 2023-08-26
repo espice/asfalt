@@ -20,7 +20,7 @@ model User {
   username String
   password String
   isAdmin  Boolean   @default(false)
-  Session  Session[]
+  sessions  Session[]
 
   @@index([id])
 }
