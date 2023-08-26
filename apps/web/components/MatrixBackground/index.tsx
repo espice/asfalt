@@ -1,6 +1,14 @@
 import React, { useEffect, useRef } from "react";
 
-function MatrixBackground({ timeout }: { timeout: number }) {
+function MatrixBackground({
+  timeout,
+  zIndex,
+  opacity,
+}: {
+  timeout: number;
+  zIndex: number;
+  opacity: number;
+}) {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -62,9 +70,10 @@ function MatrixBackground({ timeout }: { timeout: number }) {
         position: "fixed",
         height: "100%",
         width: "100%",
-        zIndex: 10,
+        zIndex,
         left: "0",
         top: "0",
+        opacity,
       }}
     >
       <canvas ref={canvas} />

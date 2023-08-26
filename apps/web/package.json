@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5000",
-    "build": "next build",
+    "dev": "pnpm codegen --dev & next dev -p 5000",
+    "build": "pnpm codegen && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "node codegen.js"
   },
   "dependencies": {
     "@cw23/config": "workspace:*",
@@ -15,13 +16,21 @@
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
     "axios": "^1.4.0",
+    "clsx": "^2.0.0",
     "eslint": "^8.47.0",
     "eslint-config-next": "13.4.19",
+    "graphql": "^16.8.0",
+    "graphql-request": "^6.1.0",
     "next": "13.4.19",
     "postcss": "8.4.28",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@genql/cli": "^6.2.1",
+    "chokidar": "^3.5.3"
   }
 }

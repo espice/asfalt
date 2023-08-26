@@ -1,12 +1,30 @@
 import { builder } from "../builder";
 import { prisma } from "../../client/prisma";
+import {
+  uniqueNamesGenerator,
+  animals,
+  adjectives,
+} from "unique-names-generator";
+import bcrypt from "bcrypt";
 
 builder.prismaObject("User", {
   fields: (t) => ({
-    id: t.exposeID("id"),
-    email: t.exposeString("email"),
-    name: t.exposeString("name"),
-    avatar: t.exposeString("avatar"),
+    id: t.field({
+      type: "ID",
+      authScopes: (root, _args, ctx) => {
+        if (root.id == ctx.userId) {
+          return { loggedIn: true };
+        } else {
+          return { isAdmin: true };
+        }
+      },
+      resolve: (root) => {
+        console.log(root);
+        return root.id;
+      },
+    }),
+    username: t.exposeString("username"),
+    isAdmin: t.exposeBoolean("isAdmin"),
   }),
 });
 
@@ -20,6 +38,40 @@ builder.queryFields((t) => ({
         },
         ...query,
       });
+    },
+  }),
+}));
+
+builder.mutationFields((t) => ({
+  addAgent: t.withAuth({ loggedIn: true, isAdmin: true }).field({
+    type: "Boolean",
+    args: {
+      id: t.arg.string({ required: true }),
+      password: t.arg.string({ required: true }),
+    },
+    resolve: async (_root, args, ctx) => {
+      console.log("here");
+      try {
+        const username = uniqueNamesGenerator({
+          dictionaries: [adjectives, animals],
+          length: 2,
+          separator: "_",
+        });
+
+        const password = await bcrypt.hash(args.password, 15);
+
+        await prisma.user.create({
+          data: {
+            id: args.id,
+            password,
+            username,
+          },
+        });
+
+        return true;
+      } catch (e) {
+        return false;
+      }
     },
   }),
 }));
