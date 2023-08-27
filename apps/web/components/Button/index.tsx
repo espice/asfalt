@@ -2,11 +2,11 @@ import { cn } from "@/utils/tw";
 
 interface ButtonProps {
   className?: string;
-  text: string;
+  children: React.ReactNode;
   onClick?: () => void;
 }
 
-export default function Button({ className, text, onClick }: ButtonProps) {
+export default function Button({ className, children, onClick }: ButtonProps) {
   return (
     <button
       className={cn(
@@ -15,7 +15,7 @@ export default function Button({ className, text, onClick }: ButtonProps) {
       )}
       onClick={onClick}
     >
-      {text}
+      {children}
     </button>
   );
 }

@@ -4,5 +4,5 @@ import AuthCtx from "../context/AuthCtx";
 export default function useUser() {
   const authCtx = useContext(AuthCtx);
 
-  return authCtx.user;
+  return authCtx?.user;
 }

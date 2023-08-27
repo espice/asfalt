@@ -1,3 +1,3 @@
 export default function DadaConDashboard() {
-  return <div>dashboard</div>;
+  return <div className="">dashboard</div>;
 }

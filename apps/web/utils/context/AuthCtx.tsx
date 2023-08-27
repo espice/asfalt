@@ -6,6 +6,7 @@ import React, { createContext, useState } from "react";
 export interface UserType {
   id: string;
   username: string;
+  isAdmin: boolean;
 }
 
 interface AuthContext {

@@ -54,10 +54,9 @@ export default function SpyLoginPage() {
               type="password"
             />
             {error}
-            <Button
-              text={loading ? "Loading..." : "Login"}
-              className="ml-[calc(100%)] translate-x-[-100%]"
-            />
+            <Button className="ml-[calc(100%)] translate-x-[-100%]">
+              {loading ? "Loading..." : "Login"}
+            </Button>
           </form>
         </div>
         {<MatrixBackground timeout={50} zIndex={1} opacity={0.25} />}

@@ -6,6 +6,7 @@ import Nav from "@/modules/Nav";
 
 import { Fira_Code } from "next/font/google";
 import { cn } from "@/utils/tw";
+import Sidebar from "@/modules/Sidebar";
 const fira = Fira_Code({ subsets: ["latin"] });
 
 async function getUser() {
@@ -31,17 +32,18 @@ export default async function Layout({
 }) {
   const user = await getUser();
 
-  if (!user.me) notFound();
+  if (!user.me) return notFound();
 
   return (
     <AuthProvider user={user.me}>
       <section
         className={cn(
-          "bg-black text-primary h-screen pt-[80px]",
+          "bg-black text-primary h-screen pt-[70px] pl-[18%]",
           fira.className
         )}
       >
         <Nav />
+        <Sidebar />
         {children}
       </section>
     </AuthProvider>
