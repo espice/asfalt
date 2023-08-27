@@ -110,8 +110,8 @@ export const fileRouter = async (
   for (const file of routeFiles) {
     if (file.endsWith(".js")) {
       const importedFile = await import(opts.dir + "/" + file);
-      const url = pathToUrl(file);
-
+      let url = pathToUrl(file);
+      url = url.replaceAll("\\", "/");
       for (const method in importedFile) {
         if (httpMethods.has(method)) {
           fastify.route({
@@ -119,7 +119,7 @@ export const fileRouter = async (
             url,
             ...(importedFile[method] as RouteZod),
           });
-          fastify.log.debug(`Loaded ${method}: ${url}`);
+          console.log(`Loaded ${method}: ${url}`);
         }
       }
     }

@@ -11,3 +11,14 @@ export const POST = createRoute({
         reply.send("Hello")
     }
 })
+
+export const GET = createRoute({
+    // schema: {
+    //     body: z.object({
+    //         email: z.string().email()
+    //     })
+    // },
+    handler: async (req, reply) => {
+        reply.send("Hello")
+    }
+})
