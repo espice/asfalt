@@ -29,7 +29,6 @@ const main = async () => {
     hook: "onRequest",
   });
 
-  console.log(__dirname);
   await app.register(fileRouter, {
     dir: join(__dirname, "rest", "routes"),
   });
