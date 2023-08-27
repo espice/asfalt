@@ -72,7 +72,6 @@ builder.mutationFields((t) => ({
       password: t.arg.string({ required: true }),
     },
     resolve: async (_root, args, ctx) => {
-      console.log("here");
       try {
         const username = uniqueNamesGenerator({
           dictionaries: [adjectives, animals],

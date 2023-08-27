@@ -24,8 +24,6 @@ export const POST = createRoute({
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) return reply.send({ success: false });
 
-    console.log(validPassword);
-
     const session = await prisma.session.create({
       data: {
         userId: user.id,

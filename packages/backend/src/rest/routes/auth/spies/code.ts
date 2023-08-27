@@ -9,7 +9,6 @@ export const POST = createRoute({
   },
   handler: async (req, reply) => {
     const code = "rinkiya ke papa";
-    console.log(code);
 
     if (code == req.body.code) {
       return reply.send({ granted: true });

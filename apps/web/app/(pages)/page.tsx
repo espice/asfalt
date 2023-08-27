@@ -10,7 +10,6 @@ export default function IndexPage() {
   useEffect(() => {
     async function localStorageEventHandler(e: Event) {
       const code = window.localStorage.getItem("dc.at");
-      console.log(code);
       if (code) {
         const res = await axios.post("/auth/spies/code", { code });
         setGranted(res.data.granted);

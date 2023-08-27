@@ -13,7 +13,6 @@ export const getContext = async ({
   req: FastifyRequest;
 }): Promise<GraphQLContext> => {
   const accessToken = req.cookies["dc.token"];
-  
   if (accessToken) {
     try {
       const { sessionId }: { sessionId: string } =

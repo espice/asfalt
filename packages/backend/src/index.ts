@@ -53,7 +53,7 @@ const main = async () => {
     },
   });
 
-  const host = "0.0.0.0";
+  const host = "127.0.0.1";
   const port = parseInt(env("PORT", "8080"));
 
   try {

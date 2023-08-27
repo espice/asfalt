@@ -10,6 +10,7 @@ import Sidebar from "@/modules/Sidebar";
 const fira = Fira_Code({ subsets: ["latin"] });
 
 async function getUser() {
+
   try {
     const user = await gqlClient().query({
       me: {
@@ -18,7 +19,6 @@ async function getUser() {
         username: true,
       },
     });
-
     return user;
   } catch (e) {
     return { me: null };
