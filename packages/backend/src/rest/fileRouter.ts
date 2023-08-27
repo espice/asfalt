@@ -80,6 +80,7 @@ function pathToUrl(path: string) {
   // Remove /index
   path = path.replace("/index", "");
   path = path.replace("index", "");
+  path = path.replaceAll("\\", "/");
 
   return "/" + path;
 }
@@ -111,7 +112,6 @@ export const fileRouter = async (
     if (file.endsWith(".js")) {
       const importedFile = await import(opts.dir + "/" + file);
       let url = pathToUrl(file);
-      url = url.replaceAll("\\", "/");
       for (const method in importedFile) {
         if (httpMethods.has(method)) {
           fastify.route({
