@@ -9,7 +9,7 @@
     "@cw23/backend#build": {
       "dependsOn": ["@cw23/database#prisma:generate"]
     },
-    "@cw23/frontend#build": {
+    "@cw23/web#build": {
       "dependsOn": ["@cw23/backend#build"],
       "outputs": [".next"]
     },
