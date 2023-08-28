@@ -95,4 +95,28 @@ builder.mutationFields((t) => ({
       }
     },
   }),
+  removeAgent: t.withAuth({ loggedIn: true, isAdmin: true }).field({
+    type: "Boolean",
+    args: {
+      id: t.arg.string({ required: true }),
+    },
+    resolve: async (_root, args, ctx) => {
+      try {
+        await prisma.user.delete({
+          where: {
+            id: args.id,
+          },
+        });
+        await prisma.session.deleteMany({
+          where: {
+            userId: args.id,
+          },
+        });
+
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+  }),
 }));
