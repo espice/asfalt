@@ -14,14 +14,14 @@ export default function Nav({ mission }: { mission: any }) {
       href: `/dadacon/mission/${mission.id}`,
     },
     {
-      title: `Devices (${mission.deviceCount})`,
+      title: `Devices`,
       href: `/dadacon/mission/${mission.id}/devices`,
     },
   ];
 
   if (user?.isAdmin) {
     navItems.push({
-      title: `Agents (${mission.agentCount})`,
+      title: `Agents`,
       href: `/dadacon/mission/${mission.id}/agents`,
     });
   }

@@ -135,4 +135,23 @@ builder.mutationFields((t) => ({
       return true;
     },
   }),
+  removeAgentFromMission: t.withAuth({ isAdmin: true }).field({
+    type: "Boolean",
+    args: {
+      agentId: t.arg.string({ required: true }),
+      missionId: t.arg.string({ required: true }),
+    },
+    resolve: async (_root, args, ctx) => {
+      await prisma.missionUser.delete({
+        where:{
+          userId_missionId: {
+            userId: args.agentId,
+            missionId: args.missionId
+          }
+        }
+      })
+
+      return true;
+    },
+  }),
 }));
