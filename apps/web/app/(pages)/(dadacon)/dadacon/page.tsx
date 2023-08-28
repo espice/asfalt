@@ -1,8 +1,11 @@
+
 import { gqlClientServer } from '@/utils/gql-server';
 import { notFound } from 'next/navigation';
 import MissionCard from './missionCard';
 import styles from './index.module.scss';
 import Button from '@/components/Button';
+import { Popup } from '@/components/Popup';
+import MissionPopup from './missionPopup';
 
 async function getMissions() {
   try {
@@ -38,7 +41,7 @@ export default async function DadaConDashboard() {
       </div>
 
       <div className={styles.main__action}>
-        <Button>New Mission</Button>
+        <MissionPopup></MissionPopup>
       </div>
     </div>
   );

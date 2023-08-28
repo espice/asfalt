@@ -20,7 +20,6 @@
   }
   
   .popup {
-    min-height: 45vh;
     max-height: 65vh;
     overflow-y: auto;
     min-width: 35vw;
@@ -34,6 +33,7 @@
     padding-top: 20px;
     padding-left: 36px;
     padding-right: 36px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     //   align-items: center;

@@ -1,3 +1,5 @@
+"use client"
+
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 import { Fira_Code } from 'next/font/google';
