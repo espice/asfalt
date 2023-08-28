@@ -95,13 +95,13 @@ builder.queryFields((t) => ({
 }));
 
 builder.mutationFields((t) => ({
-  addAgent: t.withAuth({ isAdmin: true }).field({
-    type: "Boolean",
+  addAgent: t.withAuth({ isAdmin: true }).prismaField({
+    type: "User",
     args: {
       id: t.arg.string({ required: true }),
       password: t.arg.string({ required: true }),
     },
-    resolve: async (_root, args, ctx) => {
+    resolve: async (query, _root, args, ctx) => {
       try {
         const username = uniqueNamesGenerator({
           dictionaries: [adjectives, animals],
@@ -111,18 +111,19 @@ builder.mutationFields((t) => ({
 
         const password = await bcrypt.hash(args.password, 15);
 
-        await prisma.user.create({
+        const user = await prisma.user.create({
           data: {
             id: args.id,
             password,
             username,
           },
+          ...query,
         });
 
-        return true;
+        return user;
       } catch (e) {
         console.log(e);
-        return false;
+        throw e;
       }
     },
   }),
