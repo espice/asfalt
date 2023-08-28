@@ -2,6 +2,7 @@ import { gqlClientServer } from '@/utils/gql-server';
 import { notFound } from 'next/navigation';
 import MissionCard from './missionCard';
 import styles from './index.module.scss';
+import Button from '@/components/Button';
 
 async function getMissions() {
   try {
@@ -34,6 +35,10 @@ export default async function DadaConDashboard() {
         {missions.map((mission: any) => {
           return <MissionCard mission={mission} key={mission.id}></MissionCard>;
         })}
+      </div>
+
+      <div className={styles.main__action}>
+        <Button>New Mission</Button>
       </div>
     </div>
   );
