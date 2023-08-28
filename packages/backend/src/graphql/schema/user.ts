@@ -95,7 +95,7 @@ builder.queryFields((t) => ({
 }));
 
 builder.mutationFields((t) => ({
-  addAgent: t.withAuth({ loggedIn: true, isAdmin: true }).field({
+  addAgent: t.withAuth({ isAdmin: true }).field({
     type: "Boolean",
     args: {
       id: t.arg.string({ required: true }),
@@ -121,30 +121,41 @@ builder.mutationFields((t) => ({
 
         return true;
       } catch (e) {
+        console.log(e);
         return false;
       }
     },
   }),
-  removeAgent: t.withAuth({ loggedIn: true, isAdmin: true }).field({
+  removeAgent: t.withAuth({ isAdmin: true }).field({
     type: "Boolean",
     args: {
       id: t.arg.string({ required: true }),
     },
     resolve: async (_root, args, ctx) => {
+      if (args.id == ctx.userId) return false;
+
       try {
-        await prisma.user.delete({
-          where: {
-            id: args.id,
-          },
-        });
         await prisma.session.deleteMany({
           where: {
             userId: args.id,
           },
         });
 
+        await prisma.missionUser.deleteMany({
+          where: {
+            userId: args.id,
+          },
+        });
+
+        await prisma.user.delete({
+          where: {
+            id: args.id,
+          },
+        });
+
         return true;
       } catch (e) {
+        console.log(e);
         return false;
       }
     },

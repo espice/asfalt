@@ -9,7 +9,7 @@ import Button from '@/components/Button';
 
 const Agents = ({agents}:{agents: Array<any>}) => {
     const [search, setSearch] = useState('');
-    console.log(agents)
+
     return (
         <div className={styles.container} >
             <Button className={styles.add} onClick={() => {}}> 

@@ -6,7 +6,6 @@ import styles from "./index.module.scss";
 import { gqlClient } from "@/utils/gql";
 
 const AgentCard = ({agent}:{agent: any}) => {
-    console.log('hello')
     async function removeAgent(agentId: string) {
         const res = await gqlClient.mutation({
             removeAgent: {
