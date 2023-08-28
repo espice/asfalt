@@ -78,6 +78,25 @@ builder.queryFields((t) => ({
       });
     },
   }),
+  mission: t.withAuth({ loggedIn: true }).prismaField({
+    type: "Mission",
+    args: {
+      missionId: t.arg.string({ required: true }),
+    },
+    authScopes(_parent, args, _context) {
+      return {
+        missionAccess: {
+          missionId: args.missionId,
+        },
+      };
+    },
+    resolve: async (query, _root, args, _ctx) => {
+      return await prisma.mission.findUniqueOrThrow({
+        where: { id: args.missionId },
+        ...query,
+      });
+    },
+  }),
 }));
 
 builder.mutationFields((t) => ({

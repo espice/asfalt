@@ -1,4 +1,4 @@
-import { gqlClient } from "@/utils/gql";
+import { gqlClient } from "@/utils/gql-server";
 import { notFound } from "next/navigation";
 
 async function getMissions() {

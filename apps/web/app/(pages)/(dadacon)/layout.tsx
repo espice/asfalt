@@ -1,5 +1,5 @@
 import React from "react";
-import { gqlClient } from "@/utils/gql";
+import { gqlClient } from "@/utils/gql-server";
 import { notFound } from "next/navigation";
 import { AuthProvider, UserType } from "@/utils/context/AuthCtx";
 import Nav from "@/modules/Nav";

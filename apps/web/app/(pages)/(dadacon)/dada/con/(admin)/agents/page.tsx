@@ -1,4 +1,4 @@
-import { gqlClient } from "@/utils/gql";
+import { gqlClient } from "@/utils/gql-server";
 
 async function getAgents() {
   const agents = await gqlClient().query({
