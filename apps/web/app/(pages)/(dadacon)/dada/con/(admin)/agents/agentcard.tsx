@@ -3,11 +3,19 @@
 import Button from "@/components/Button";
 import SecondaryButton from "@/components/SecondaryButton";
 import styles from "./index.module.scss";
+import { gqlClient } from "@/utils/gql";
 
 const AgentCard = ({agent}:{agent: any}) => {
-    function removeAgent() {
-
-
+    console.log('hello')
+    async function removeAgent(agentId: string) {
+        const res = await gqlClient.mutation({
+            removeAgent: {
+                __args: {
+                    id: agentId
+                }
+            }
+        })
+        console.log(res)
     }
     return (
         <div className={styles.card}>
@@ -22,7 +30,7 @@ const AgentCard = ({agent}:{agent: any}) => {
                 <SecondaryButton className={styles.card__buttons__button} onClick={() => {}}>
                     Sessions
                 </SecondaryButton>
-                <SecondaryButton className={styles.card__buttons__dangerbutton} onClick={() => {removeAgent()}}>
+                <SecondaryButton className={styles.card__buttons__dangerbutton} onClick={() => {removeAgent(agent?.id)}}>
                     Remove
                 </SecondaryButton>
             </div>

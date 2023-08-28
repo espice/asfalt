@@ -5,7 +5,7 @@ import { PrismaPlugin } from "@cw23/database";
 import type { PothosPrismaTypes } from "@cw23/database";
 import { prisma } from "../client/prisma";
 import { GraphQLContext } from "./context";
-import { isAdmin } from "./permission";
+import { hasMissionAccess, isAdmin, MissionAccessArgs } from "./permission";
 
 export interface BuilderType {
   Context: GraphQLContext;
@@ -13,6 +13,7 @@ export interface BuilderType {
   AuthScopes: {
     loggedIn: boolean;
     isAdmin: boolean;
+    missionAccess: MissionAccessArgs;
   };
   AuthContexts: {
     loggedIn: GraphQLContext & { userId: string };
@@ -29,6 +30,7 @@ export const builder = new SchemaBuilder<BuilderType>({
   authScopes: async (ctx) => ({
     loggedIn: !!ctx.userId,
     isAdmin: await isAdmin(ctx),
+    missionAccess: (args) => hasMissionAccess(ctx, args)
   }),
   prisma: {
     client: prisma,

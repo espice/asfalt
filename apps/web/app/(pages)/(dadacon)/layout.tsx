@@ -1,5 +1,5 @@
 import React from "react";
-import { gqlClient } from "@/utils/gql";
+import { gqlClientServer } from "@/utils/gql-server";
 import { notFound } from "next/navigation";
 import { AuthProvider, UserType } from "@/utils/context/AuthCtx";
 import Nav from "@/modules/Nav";
@@ -11,7 +11,7 @@ const fira = Fira_Code({ subsets: ["latin"] });
 
 async function getUser() {
   try {
-    const user = await gqlClient().query({
+    const user = await gqlClientServer().query({
       me: {
         id: true,
         isAdmin: true,
