@@ -1,7 +1,7 @@
 import React from "react";
 import { gqlClient } from "@/utils/gql";
 import { notFound } from "next/navigation";
-import { AuthProvider } from "@/utils/context/AuthCtx";
+import { AuthProvider, UserType } from "@/utils/context/AuthCtx";
 import Nav from "@/modules/Nav";
 
 import { Fira_Code } from "next/font/google";
@@ -10,18 +10,21 @@ import Sidebar from "@/modules/Sidebar";
 const fira = Fira_Code({ subsets: ["latin"] });
 
 async function getUser() {
-
   try {
     const user = await gqlClient().query({
       me: {
         id: true,
         isAdmin: true,
         username: true,
+        missions: {
+          id: true,
+          title: true,
+        },
       },
     });
     return user;
   } catch (e) {
-    console.log(e)
+    console.log(e);
     return { me: null };
   }
 }

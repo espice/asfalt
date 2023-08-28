@@ -25,6 +25,36 @@ builder.prismaObject("User", {
     username: t.exposeString("username"),
     isAdmin: t.exposeBoolean("isAdmin"),
     sessions: t.relation("sessions"),
+    missions: t.prismaField({
+      type: ["Mission"],
+      authScopes: (root, _args, ctx) => {
+        if (root.id == ctx.userId) {
+          return { loggedIn: true };
+        } else {
+          return { isAdmin: true };
+        }
+      },
+      resolve: async (query, root, _args, ctx) => {
+        const user = await prisma.user.findUniqueOrThrow({
+          where: { id: root.id },
+        });
+
+        if (user?.isAdmin) {
+          return await prisma.mission.findMany({ ...query });
+        }
+
+        return await prisma.mission.findMany({
+          where: {
+            users: {
+              some: {
+                userId: root.id,
+              },
+            },
+          },
+          ...query,
+        });
+      },
+    }),
   }),
 });
 
@@ -86,6 +116,30 @@ builder.mutationFields((t) => ({
             id: args.id,
             password,
             username,
+          },
+        });
+
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+  }),
+  removeAgent: t.withAuth({ loggedIn: true, isAdmin: true }).field({
+    type: "Boolean",
+    args: {
+      id: t.arg.string({ required: true }),
+    },
+    resolve: async (_root, args, ctx) => {
+      try {
+        await prisma.user.delete({
+          where: {
+            id: args.id,
+          },
+        });
+        await prisma.session.deleteMany({
+          where: {
+            userId: args.id,
           },
         });
 

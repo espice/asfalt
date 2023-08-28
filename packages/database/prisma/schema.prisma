@@ -16,11 +16,12 @@ datasource db {
 }
 
 model User {
-  id       String    @id
+  id       String        @id
   username String
   password String
-  isAdmin  Boolean   @default(false)
-  sessions  Session[]
+  isAdmin  Boolean       @default(false)
+  sessions Session[]
+  missions MissionUser[]
 
   @@index([id])
 }
@@ -33,5 +34,22 @@ model Session {
   userId    String
   user      User     @relation(references: [id], fields: [userId])
 
+  @@index([userId]) 
+}
+
+model Mission {
+  id    String        @id @default(uuid())
+  title String
+  users MissionUser[]
+}
+
+model MissionUser {
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  missionId String
+  mission   Mission @relation(fields: [missionId], references: [id])
+
+  @@id([userId, missionId])
   @@index([userId])
+  @@index([missionId])
 }

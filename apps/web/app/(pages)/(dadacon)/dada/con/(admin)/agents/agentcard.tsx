@@ -3,13 +3,10 @@
 import Button from "@/components/Button";
 import SecondaryButton from "@/components/SecondaryButton";
 import styles from "./index.module.scss";
-import { gqlClient } from "@/utils/gql";
 
 const AgentCard = ({agent}:{agent: any}) => {
     function removeAgent() {
-        gqlClient().mutation({
-            
-        })
+
 
     }
     return (
