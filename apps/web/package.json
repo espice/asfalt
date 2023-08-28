@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@genql/cli": "^6.2.1",
-    "chokidar": "^3.5.3"
+    "chokidar": "^3.5.3",
+    "concurrently": "^8.2.1"
   }
 }
