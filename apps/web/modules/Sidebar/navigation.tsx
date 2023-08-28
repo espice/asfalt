@@ -51,7 +51,7 @@ export default function Navigation() {
               <div
                 className={cn(
                   "h-[60px] cursor-pointer flex items-center p-6 my-4 mx-6 font-[500]",
-                  `/dadacon/mission/${navItem.id}` === pathname
+                  pathname.includes(`/dadacon/mission/${navItem.id}`)
                     ? "border-[3px] border-primary font-[600]"
                     : ""
                 )}

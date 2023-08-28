@@ -7,6 +7,7 @@ import Nav from "@/modules/Nav";
 import { Fira_Code } from "next/font/google";
 import { cn } from "@/utils/tw";
 import Sidebar from "@/modules/Sidebar";
+
 const fira = Fira_Code({ subsets: ["latin"] });
 
 async function getUser() {

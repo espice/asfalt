@@ -27,7 +27,7 @@ export default async function DadaConDashboard() {
   return (
     <div className="">
       {missions.map((mission) => {
-        return <div>{mission.title}</div>;
+        return <div key={mission.id}>{mission.title}</div>;
       })}
     </div>
   );
