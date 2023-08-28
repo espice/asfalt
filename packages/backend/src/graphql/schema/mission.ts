@@ -143,13 +143,13 @@ builder.mutationFields((t) => ({
     },
     resolve: async (_root, args, ctx) => {
       await prisma.missionUser.delete({
-        where:{
+        where: {
           userId_missionId: {
             userId: args.agentId,
-            missionId: args.missionId
-          }
-        }
-      })
+            missionId: args.missionId,
+          },
+        },
+      });
 
       return true;
     },
