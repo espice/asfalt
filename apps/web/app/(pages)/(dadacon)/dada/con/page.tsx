@@ -1,9 +1,9 @@
-import { gqlClient } from "@/utils/gql-server";
+import { gqlClientServer } from "@/utils/gql-server";
 import { notFound } from "next/navigation";
 
 async function getMissions() {
   try {
-    const { missions } = await gqlClient().query({
+    const { missions } = await gqlClientServer().query({
       missions: {
         id: true,
         title: true,

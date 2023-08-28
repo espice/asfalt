@@ -19,4 +19,4 @@ const client = () => {
     });
   }
 };
-export { client as gqlClient };
+export { client as gqlClientServer };
