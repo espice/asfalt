@@ -42,11 +42,9 @@ builder.prismaObject("Mission", {
         });
       },
     }),
+    devices: t.relation("devices"),
     agentCount: t.relationCount("users"),
-    deviceCount: t.field({
-      type: "Int",
-      resolve: () => 12,
-    }),
+    deviceCount: t.relationCount("devices"),
     suspectCount: t.field({
       type: "Int",
       resolve: () => 4,
