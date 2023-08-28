@@ -1,0 +1,124 @@
+.popup-overlay {
+    z-index: 21474836;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.76, 0, 0.24, 1),
+      display 0.3s 0.5s ease-in;
+  
+    &--open {
+      opacity: 1;
+      display: block;
+    }
+  }
+  
+  .popup {
+    min-height: 45vh;
+    max-height: 65vh;
+    overflow-y: auto;
+    min-width: 35vw;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: black;
+    border: 4px solid #20C20E;
+    color: #303030;
+    padding-top: 20px;
+    padding-left: 36px;
+    padding-right: 36px;
+    display: flex;
+    flex-direction: column;
+    //   align-items: center;
+    // box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 21474837;
+  
+    display: flex;
+    opacity: 0;
+  
+    transition: 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  
+    &--no-padding {
+      padding: 0;
+    }
+  
+  
+    &__heading {
+      font-size: 36px;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+  
+    &--open {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  
+    &--center {
+      left: 50%;
+      // transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+  @media (max-width: 1050px) {
+    .popup {
+      left: 50vw;
+    }
+  }
+  
+  .dots {
+    &__dot1 {
+      position: absolute;
+      height: 12px;
+      width: 12px;
+      background-color: var(--box-border);
+      border-radius: 50%;
+      top: 15px;
+      left: 15px;
+    }
+    &__dot2 {
+      position: absolute;
+      height: 12px;
+      width: 12px;
+      background-color: var(--box-border);
+      border-radius: 50%;
+      top: 15px;
+      right: 15px;
+    }
+    &__dot3 {
+      position: absolute;
+      height: 12px;
+      width: 12px;
+      background-color: var(--box-border);
+      border-radius: 50%;
+      bottom: 15px;
+      left: 15px;
+    }
+    &__dot4 {
+      position: absolute;
+      height: 12px;
+      width: 12px;
+      background-color: var(--box-border);
+      border-radius: 50%;
+      bottom: 15px;
+      right: 15px;
+    }
+  }
+
+
+  .ok {
+    position: absolute;
+    right: 36px;
+    padding: 2px;
+    top: 20px;
+    cursor: pointer;
+    border: 1.5px solid #20C20E;
+  }

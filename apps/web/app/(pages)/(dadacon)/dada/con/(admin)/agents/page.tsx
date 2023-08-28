@@ -1,5 +1,6 @@
 import { gqlClientServer } from "@/utils/gql-server";
 import Agents from "./agents";
+import { useState } from "react";
 
 async function getAgents() {
   const agents = await gqlClientServer().query({
@@ -10,6 +11,7 @@ async function getAgents() {
       sessions: {
         id: true,
         ip: true,
+        createdAt: true,
         device: true,
       },
     },
@@ -19,11 +21,11 @@ async function getAgents() {
 }
 
 export default async function AgentsPage() {
-  const agents = await getAgents();
-
+  let agents = await getAgents();
+ 
   return (
     <div>
-      <Agents agents={agents}/>
+      <Agents agents={agents} />
     </div>
   );
 }
