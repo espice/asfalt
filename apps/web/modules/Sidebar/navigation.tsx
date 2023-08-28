@@ -22,23 +22,46 @@ export default function Navigation() {
   const agentNav = [{ title: "All Missions", href: "/dada/con" }];
 
   return (
-    <div className="w-full border-b-[1px] border-primary cursor-pointer">
-      {(user?.isAdmin ? adminNav : agentNav).map((navItem) => {
-        return (
-          <Link href={navItem.href}>
-            <div
-              className={cn(
-                "h-[60px] flex items-center p-6 my-4 mx-6 font-[500]",
-                navItem.href === pathname
-                  ? "border-[3px] border-primary font-[600]"
-                  : ""
-              )}
+    <>
+      <div className="w-full border-b-[1px] border-primary ">
+        {(user?.isAdmin ? adminNav : agentNav).map((navItem) => {
+          return (
+            <Link href={navItem.href} key={navItem.href}>
+              <div
+                className={cn(
+                  "h-[60px] flex cursor-pointer items-center p-6 my-4 mx-6 font-[500]",
+                  navItem.href === pathname
+                    ? "border-[3px] border-primary font-[600]"
+                    : ""
+                )}
+              >
+                {navItem.title}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+      <div className="w-full">
+        {user!.missions.map((navItem) => {
+          return (
+            <Link
+              href={`/dada/con/mission/${navItem.id}`}
+              key={`/dada/con/mission/${navItem.id}`}
             >
-              {navItem.title}
-            </div>
-          </Link>
-        );
-      })}
-    </div>
+              <div
+                className={cn(
+                  "h-[60px] cursor-pointer flex items-center p-6 my-4 mx-6 font-[500]",
+                  `/dada/con/mission/${navItem.id}` === pathname
+                    ? "border-[3px] border-primary font-[600]"
+                    : ""
+                )}
+              >
+                {navItem.title}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </>
   );
 }
