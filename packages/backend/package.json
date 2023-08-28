@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "tsc -w & node --watch --watch-preserve-output dist",
     "build": "tsc",
+    "build:watch": "tsc -w",
     "start": "node dist/index.js",
-    "dev:yash": "nodemon --exec pnpm build && pnpm start"
+    "start:watch": "nodemon dist/index.js",
+    "dev:windows": "concurrently \"pnpm build:watch\" \"pnpm start:watch\""
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +40,7 @@
     "@types/node": "20.5.3",
     "@types/react": "18.2.21",
     "@types/ua-parser-js": "^0.7.36",
+    "concurrently": "^8.2.1",
     "nodemon": "^3.0.1",
     "typescript": "5.1.6"
   }

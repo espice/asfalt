@@ -12,14 +12,14 @@ export default function Navigation() {
   const adminNav = [
     {
       title: "All Missions",
-      href: "/dada/con",
+      href: "/dadacon",
     },
-    { title: "Agents", href: "/dada/con/agents" },
-    { title: "Archives", href: "/dada/con/archives" },
-    { title: "Devices", href: "/dada/con/devices" },
+    { title: "Agents", href: "/dadacon/agents" },
+    { title: "Archives", href: "/dadacon/archives" },
+    { title: "Devices", href: "/dadacon/devices" },
   ];
 
-  const agentNav = [{ title: "All Missions", href: "/dada/con" }];
+  const agentNav = [{ title: "All Missions", href: "/dadacon" }];
 
   return (
     <>
@@ -45,13 +45,13 @@ export default function Navigation() {
         {user!.missions.map((navItem) => {
           return (
             <Link
-              href={`/dada/con/mission/${navItem.id}`}
-              key={`/dada/con/mission/${navItem.id}`}
+              href={`/dadacon/mission/${navItem.id}`}
+              key={`/dadacon/mission/${navItem.id}`}
             >
               <div
                 className={cn(
                   "h-[60px] cursor-pointer flex items-center p-6 my-4 mx-6 font-[500]",
-                  `/dada/con/mission/${navItem.id}` === pathname
+                  pathname.includes(`/dadacon/mission/${navItem.id}`)
                     ? "border-[3px] border-primary font-[600]"
                     : ""
                 )}

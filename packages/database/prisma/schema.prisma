@@ -34,13 +34,14 @@ model Session {
   userId    String
   user      User     @relation(references: [id], fields: [userId])
 
-  @@index([userId]) 
+  @@index([userId])
 }
 
 model Mission {
-  id    String        @id @default(uuid())
-  title String
-  users MissionUser[]
+  id      String        @id @default(uuid())
+  title   String
+  users   MissionUser[]
+  devices Device[]
 }
 
 model MissionUser {
@@ -51,5 +52,17 @@ model MissionUser {
 
   @@id([userId, missionId])
   @@index([userId])
+  @@index([missionId])
+}
+
+model Device {
+  id           String   @id @default(uuid())
+  owner        String
+  location     String
+  suspected    Boolean
+  lastAccessed String
+  missionId    String?
+  mission      Mission? @relation(fields: [missionId], references: [id])
+
   @@index([missionId])
 }
