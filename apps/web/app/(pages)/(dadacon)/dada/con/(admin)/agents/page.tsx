@@ -1,4 +1,5 @@
 import { gqlClient } from "@/utils/gql";
+import Agents from "./agents";
 
 async function getAgents() {
   const agents = await gqlClient().query({
@@ -20,5 +21,9 @@ async function getAgents() {
 export default async function AgentsPage() {
   const agents = await getAgents();
 
-  return <div>{agents.length}</div>;
+  return (
+    <div>
+      <Agents agents={agents}/>
+    </div>
+  );
 }

@@ -1,0 +1,70 @@
+.container {
+    &__heading {
+        display: flex;
+        margin: 0 2rem;
+        align-items: center;
+        padding-top: 10px;
+        &__heading {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        &__input {
+            width: 230px;
+            margin-left: auto;
+            height: 40px;
+            color: #b6b6b6; 
+            font-size: 12px;
+        }
+    }
+
+    &__agents {
+        margin-top: 20px;
+        display: flex;
+        flex-flow: column;
+        gap: 18px;
+    }
+}
+
+
+.card {
+    border: 3px solid #20C20E;
+    margin: 0 2rem;
+    display: flex;
+    padding: 1rem;
+    &__buttons {
+        display: flex;
+        margin-left: auto;
+        gap: 12px;
+        align-items: center;
+        &__button {
+            width: 140px;
+        }
+        &__dangerbutton {
+            width: 140px;
+            background-color: rgba(#D01A1A, 0.5);
+            color: white;
+            border-color: #D01A1A;
+        }
+    }
+
+    &__text {
+        &__name {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        &__username {
+            color: #ffffff;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+    }
+}
+
+.add {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 2rem;
+    margin-bottom: 1.5rem;
+}
