@@ -112,7 +112,10 @@ function AddToClusterPopup({
       <div className="flex flex-col mt-8">
         {user?.missions.map((mission, idx) => {
           return (
-            <div className="flex w-full py-6 border-b-[1px] border-white/[0.2] items-center justify-between">
+            <div
+              className="flex w-full py-6 border-b-[1px] border-white/[0.2] items-center justify-between"
+              key={mission.id}
+            >
               <p className="text-[20px] text-white">{mission.title}</p>
               <SecondaryButton
                 onClick={async () => {

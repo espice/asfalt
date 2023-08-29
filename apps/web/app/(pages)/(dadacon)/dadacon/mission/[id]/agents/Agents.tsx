@@ -6,8 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import AgentCard from "./AgentCard";
 import Button from "@/components/Button";
 import { Popup } from "@/components/Popup";
-import SecondaryButton from "@/components/SecondaryButton";
-import { gqlClient } from "@/utils/gql";
 import AddAgentPopup from "./AddAgentPopup";
 
 const Agents = ({
@@ -19,13 +17,15 @@ const Agents = ({
 }) => {
   const [search, setSearch] = useState("");
   const [addShow, setAddShow] = useState(false);
-  const [adduser, setAdduser] = useState("");
-  const [realAgents, setRealAgents] = useState(agents);
-  const [password, setPassword] = useState("");
+  const [realAgents, setRealAgents] = useState<any[]>(agents);
   const addRef = useRef(null);
 
+  useEffect(() => {
+    setRealAgents(agents);
+  }, []);
+
   function removeAgent({ i }: { i: number }) {
-    setRealAgents(realAgents.splice(i, 1));
+    setRealAgents([...realAgents.splice(i, 1)]);
   }
 
   useEffect(() => {
@@ -57,9 +57,9 @@ const Agents = ({
       <div className={styles.container__agents}>
         {realAgents.map((agent, iter) => {
           return (
-            <div key={iter}>
+            <div key={agent.id}>
               <AgentCard
-                key={iter}
+                key={agent.id}
                 agent={agent}
                 remove={removeAgent}
                 i={iter}

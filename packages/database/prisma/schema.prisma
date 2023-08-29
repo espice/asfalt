@@ -63,6 +63,24 @@ model Device {
   lastAccessed String
   missionId    String?
   mission      Mission? @relation(fields: [missionId], references: [id])
+  logs         Log[]
 
   @@index([missionId])
+}
+
+enum LogType {
+  text
+  call
+}
+
+model Log {
+  id       String  @id @default(uuid())
+  message  String
+  type     LogType
+  time     String
+  deviceId String
+  flagged  Boolean @default(false)
+  device   Device  @relation(fields: [deviceId], references: [id])
+
+  @@index([deviceId])
 }

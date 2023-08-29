@@ -65,7 +65,7 @@ const AgentCard = ({
           {agent?.sessions.map((session: any, iter: any) => {
             let date = new Date(session?.createdAt);
             return (
-              <div key={iter} className={styles.sessions__session}>
+              <div key={session.id} className={styles.sessions__session}>
                 <h3 className={styles.sessions__session__time}>
                   {date.toUTCString()}
                 </h3>

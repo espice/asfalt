@@ -64,7 +64,7 @@ export default function AddAgentPopup({
         <div>
           {agents.map((agent: any, idx) => {
             return (
-              <div className="flex w-full py-6 border-b-[1px] border-white/[0.2] items-center justify-between">
+              <div key={agent.id} className="flex w-full py-6 border-b-[1px] border-white/[0.2] items-center justify-between">
                 <p className="text-[20px] text-white">{agent.id}</p>
                 <SecondaryButton
                   onClick={async () => {

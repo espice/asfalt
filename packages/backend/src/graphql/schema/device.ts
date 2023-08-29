@@ -17,6 +17,7 @@ builder.prismaObject("Device", {
     lastAccessed: t.exposeString("lastAccessed"),
     suspected: t.exposeBoolean("suspected"),
     mission: t.relation("mission", { type: DeviceMission, nullable: true }),
+    logs: t.relation("logs"),
   }),
 });
 

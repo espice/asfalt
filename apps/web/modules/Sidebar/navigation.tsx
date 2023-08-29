@@ -23,7 +23,7 @@ export default function Navigation() {
 
   return (
     <>
-      <div className="w-full border-b-[1px] border-primary ">
+      <div className="w-full border-b-[1px] border-primary">
         {(user?.isAdmin ? adminNav : agentNav).map((navItem) => {
           return (
             <Link href={navItem.href} key={navItem.href}>
@@ -41,7 +41,7 @@ export default function Navigation() {
           );
         })}
       </div>
-      <div className="w-full">
+      <div className="w-full  pb-[90px]">
         {user!.missions.map((navItem) => {
           return (
             <Link

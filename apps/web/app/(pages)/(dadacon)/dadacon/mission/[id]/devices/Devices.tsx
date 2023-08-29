@@ -13,14 +13,22 @@ const Devices = ({
   missionId: string;
 }) => {
   const [search, setSearch] = useState("");
-  const [devices, setDevices] = useState(devicesData);
+  const [devices, setDevices] = useState<any[]>([]);
+
+  useEffect(() => {
+    setDevices(devicesData);
+  }, []);
+
+  useEffect(() => {
+    console.log("devices changed");
+  }, [devices]);
 
   function removeDevice(i: number) {
     console.log(i);
     const d = devices;
     d.splice(i, 1);
     console.log(d);
-    setDevices(d);
+    setDevices([...d]);
   }
 
   return (
@@ -41,10 +49,9 @@ const Devices = ({
         {devices.map((device, i) => {
           return (
             <DeviceCard
-              //   key={i}
+              key={device.id}
               device={device}
               remove={() => removeDevice(i)}
-              //   key={device.id + device.mission?.id.toString()}
             />
           );
         })}

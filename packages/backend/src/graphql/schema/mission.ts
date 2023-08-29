@@ -43,8 +43,14 @@ builder.prismaObject("Mission", {
       },
     }),
     devices: t.relation("devices"),
-    agentCount: t.relationCount("users"),
-    deviceCount: t.relationCount("devices"),
+    agentCount: t.field({
+      type: "Int",
+      resolve: () => 6,
+    }),
+    deviceCount: t.field({
+      type: "Int",
+      resolve: () => 2,
+    }),
     suspectCount: t.field({
       type: "Int",
       resolve: () => 4,
@@ -104,14 +110,17 @@ builder.mutationFields((t) => ({
       title: t.arg.string({ required: true }),
     },
     resolve: async (query, _root, args, ctx) => {
-      return await prisma.mission.create({
-        data: {
-          title: args.title,
-          users: {
-            create: [{ userId: ctx.userId }],
+      return {
+        ...(await prisma.mission.create({
+          data: {
+            title: args.title,
+            users: {
+              create: [{ userId: ctx.userId }],
+            },
           },
-        },
-      });
+        })),
+        deviceCount: 0,
+      };
     },
   }),
   addAgentToMission: t.withAuth({ isAdmin: true }).field({

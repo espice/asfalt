@@ -70,9 +70,9 @@ const Agents = ({ agents }: { agents: Array<any> }) => {
       <div className={styles.container__agents}>
         {realAgents.map((agent, iter) => {
           return (
-            <div key={iter}>
+            <div key={agent.id}>
               <AgentCard
-                key={iter}
+                key={agent.id}
                 agent={agent}
                 remove={removeAgent}
                 i={iter}
