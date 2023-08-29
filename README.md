@@ -22,7 +22,7 @@ pnpm i
 pnpm build
 ```
 
-To Run in 
+To Run, first do
 ```
 pnpm -C packages/backend start
 ```
