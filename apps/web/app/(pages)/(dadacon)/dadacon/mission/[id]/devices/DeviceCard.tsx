@@ -16,6 +16,8 @@ export default function DeviceCard({
   device: any;
   remove: () => void;
 }) {
+  const [show, setShow] = useState(false);
+  const popupRef = useRef(null);
   return (
     <div className={styles.container__devices__device}>
       <div className={styles.container__devices__device__text}>
@@ -68,7 +70,7 @@ export default function DeviceCard({
               "flex gap-4"
             )}
           >
-            <SecondaryButton onClick={() => {}}>View Activity</SecondaryButton>{" "}
+            <SecondaryButton onClick={() => { setShow(true) }}>View Activity</SecondaryButton>{" "}
             <SecondaryButton
               className={styles.dangerbutton}
               onClick={async () => {
@@ -91,6 +93,63 @@ export default function DeviceCard({
           </p>
         )}
       </div>
+      <Popup ref={popupRef} popupState={show} crossHandler={() => {setShow(false)}}>
+        <div className={styles.popup}>
+          <h1 className={styles.popup__heading}>Activity - Kabir Bhalla</h1>
+          <div className={styles.popup__flex}>
+            <div className={styles.popup__flex__one}>
+              <h3 className={styles.popup__flex__one__sus}>Suspected texts and calls</h3>
+              <div className={styles.popup__flex__one__switcher}>
+
+              </div>
+            </div>
+            <div className={styles.popup__flex__two}>
+              <div
+                style={{
+                  display: "flex",
+                  marginLeft: "auto",
+                  alignItems: "center",
+                  gap: "8px",
+                }}
+              >
+                <>
+                  <h2 className={styles.popup__flex__two__heading}>
+                    View full activity
+                  </h2>
+                  <svg width="12px" height="12px" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 0V2H14.59L4.76 11.83L6.17 13.24L16 3.41V7H18V0M16 16H2V2H9V0H2C0.89 0 0 0.9 0 2V16C0 16.5304 0.210714 17.0391 0.585786 17.4142C0.960859 17.7893 1.46957 18 2 18H16C16.5304 18 17.0391 17.7893 17.4142 17.4142C17.7893 17.0391 18 16.5304 18 16V9H16V16Z" fill="#20C20E" />
+                  </svg>
+                </>
+              </div>
+            </div>
+          </div>
+          <div className={styles.popup__switcher}>
+                <div className={styles.popup__switcher__active}>
+                  Texts
+                </div>
+                <div className={styles.popup__switcher__switch}>
+                  Calls
+                </div>
+          </div>
+          <div className={styles.popup__values}>
+                <div className={styles.popup__values__value}>
+                  <div className={styles.popup__values__value__flex}>
+                    <h1 className={styles.popup__values__value__flex__title}>“Let{"\’"}s plant a bomb in the WTC”</h1>
+                    <h3 className={styles.popup__values__value__flex__date}>27 Aug 2023</h3>
+                  </div>
+                  <SecondaryButton className={styles.popup__values__value__button}>Flag</SecondaryButton>
+                </div>
+                <div className={styles.popup__values__value}>
+                  <div className={styles.popup__values__value__flex}>
+                    <h1 className={styles.popup__values__value__flex__title}>“Let{"\’"}s plant a bomb in the WTC”</h1>
+                    <h3 className={styles.popup__values__value__flex__date}>27 Aug 2023</h3>
+                  </div>
+                  <SecondaryButton className={styles.popup__values__value__button}>Flag</SecondaryButton>
+                </div>
+                
+          </div>
+        </div>
+      </Popup>
     </div>
   );
 }

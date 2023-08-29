@@ -1,0 +1,61 @@
+.container {
+    &__heading {
+      display: flex;
+      margin: 0 2rem;
+      align-items: center;
+      padding-top: 10px;
+      &__heading {
+        font-size: 24px;
+        font-weight: 600;
+      }
+  
+      &__input {
+        width: 230px;
+        margin-left: auto;
+        height: 40px;
+        color: #b6b6b6;
+        font-size: 12px;
+      }
+    }
+
+    &__logs {
+      margin-top: 20px;
+      &__log {
+        border: 3px solid #20c20e;
+        margin: 2rem 2rem;
+        display: flex;
+        padding: 20px;
+        align-items: center;
+        &__text {
+          flex: 1;
+          display: flex;
+          flex-flow: column;
+          gap: 4px;
+          &__heading {
+            font-size: 20px;
+            font-weight: 500;
+          }
+          &__info {
+            color: white;
+            font-size: 15px;
+          }
+        }
+        &__uh {
+          margin-left: auto;
+          display: flex;
+          flex: 1;
+          align-self: stretch;
+          flex-flow: column;
+          justify-content: right;
+          &__danger {
+            font-size: 14px;
+            text-align: right;
+          }
+          &__button {
+            margin-left: auto;
+            margin-top: auto;
+          }
+        }
+      }
+    }
+}  
