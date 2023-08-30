@@ -102,7 +102,6 @@ function AddToClusterPopup({
 }) {
   const user = useUser();
   const [loadingIndex, setLoadingIndex] = useState<number | null>(null);
-  const router = useRouter();
 
   return (
     <div className="flex flex-col text-primary">
@@ -138,7 +137,7 @@ function AddToClusterPopup({
                   });
                   setLoadingIndex(null);
                   closeModal();
-                  router.replace(`/dadacon/mission/${mission.id}/devices`);
+                  window.location.href = `/dadacon/mission/${mission.id}/devices`;
                 }}
               >
                 {loadingIndex === idx ? "..." : "Add"}

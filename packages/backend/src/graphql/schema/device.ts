@@ -28,6 +28,20 @@ builder.queryFields((t) => ({
       return await prisma.device.findMany({ ...query });
     },
   }),
+  device: t.withAuth({ loggedIn: true }).prismaField({
+    type: "Device",
+    args: {
+      deviceId: t.arg.string({ required: true }),
+    },
+    resolve: async (query, _root, args, _ctx) => {
+      return await prisma.device.findUniqueOrThrow({
+        where: {
+          id: args.deviceId,
+        },
+        ...query,
+      });
+    },
+  }),
 }));
 
 builder.mutationFields((t) => ({

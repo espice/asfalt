@@ -58,14 +58,6 @@ builder.mutationFields((t) => ({
     type: "Boolean",
     args: {
       logId: t.arg.string({ required: true }),
-      missionId: t.arg.string({ required: true }),
-    },
-    authScopes(parent, args, context, info) {
-      return {
-        missionAccess: {
-          missionId: args.missionId,
-        },
-      };
     },
     resolve: async (_root, args, _ctx) => {
       await prisma.log.update({
@@ -100,6 +92,7 @@ builder.queryFields((t) => ({
           device: {
             missionId: args.missionId,
           },
+          flagged: true,
         },
         ...query,
       });

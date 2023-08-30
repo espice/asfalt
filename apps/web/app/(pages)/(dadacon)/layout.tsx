@@ -43,7 +43,7 @@ export default async function Layout({
     <AuthProvider user={user.me}>
       <section
         className={cn(
-          "bg-black text-primary h-screen pt-[70px] pl-[18%]",
+          "bg-black text-primary h-min-screen pt-[70px] pl-[18%]",
           fira.className
         )}
       >

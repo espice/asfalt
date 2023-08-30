@@ -30,7 +30,7 @@ export default function AddAgentPopup({
     });
 
     const a: any[] = [];
-    res.agents.forEach((agent) => {
+    res.agents.forEach((agent: any) => {
       if (!existingAgents.includes(agent.id)) {
         a.push(agent);
       }

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Logs from "./logs";
 
 
+
 export default async function MissionPage({
   params: { id: missionId },
 }: {
@@ -11,7 +12,7 @@ export default async function MissionPage({
 
   return (
     <div>
-        <Logs />
+      <Logs missionId={missionId}/>
     </div>
   );
 }

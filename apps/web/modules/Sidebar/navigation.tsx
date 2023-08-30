@@ -11,7 +11,7 @@ export default function Navigation() {
 
   const adminNav = [
     {
-      title: "All Missions",
+      title: "All Clusters",
       href: "/dadacon",
     },
     { title: "Agents", href: "/dadacon/agents" },
@@ -19,7 +19,7 @@ export default function Navigation() {
     { title: "Devices", href: "/dadacon/devices" },
   ];
 
-  const agentNav = [{ title: "All Missions", href: "/dadacon" }];
+  const agentNav = [{ title: "All Clusters", href: "/dadacon" }];
 
   return (
     <>

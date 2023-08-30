@@ -15,6 +15,9 @@ async function getDevices(missionId: string) {
           location: true,
           lastAccessed: true,
           suspected: true,
+          mission: {
+            id: true,
+          }
         },
       },
     });

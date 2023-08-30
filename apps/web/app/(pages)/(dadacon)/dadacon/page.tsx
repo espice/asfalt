@@ -3,8 +3,6 @@ import { gqlClientServer } from '@/utils/gql-server';
 import { notFound } from 'next/navigation';
 import MissionCard from './missionCard';
 import styles from './index.module.scss';
-import Button from '@/components/Button';
-import { Popup } from '@/components/Popup';
 import MissionPopup from './missionPopup';
 
 async function getMissions() {
@@ -27,13 +25,12 @@ async function getMissions() {
 
 export default async function DadaConDashboard() {
   const missions = await getMissions();
-  console.log(missions);
 
   if (!missions) return notFound();
 
   return (
     <div className={styles.main}>
-      <h1 className={styles.main__title}>All Missions</h1>
+      <h1 className={styles.main__title}>All Clusters</h1>
       <div className={styles.main__cards}>
         {missions.map((mission: any) => {
           return <MissionCard mission={mission} key={mission.id}></MissionCard>;
@@ -41,7 +38,7 @@ export default async function DadaConDashboard() {
       </div>
 
       <div className={styles.main__action}>
-        <MissionPopup></MissionPopup>
+        <MissionPopup />
       </div>
     </div>
   );

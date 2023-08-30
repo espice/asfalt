@@ -2,7 +2,7 @@
 
 import Input from "@/components/Input";
 import styles from "./index.module.scss";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AgentCard from "./agentcard";
 import Button from "@/components/Button";
 import { Popup } from "@/components/Popup";
@@ -12,10 +12,15 @@ import { gqlClient } from "@/utils/gql";
 const Agents = ({ agents }: { agents: Array<any> }) => {
   const [search, setSearch] = useState("");
   const [addShow, setAddShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [adduser, setAdduser] = useState("");
   const [realAgents, setRealAgents] = useState(agents);
   const [password, setPassword] = useState("");
   const addRef = useRef(null);
+
+  useEffect(() => {
+    setRealAgents(agents);
+  }, [agents]);
 
   async function addAgent(agentId: string, password: string) {
     const res = await gqlClient.mutation({
@@ -37,6 +42,7 @@ const Agents = ({ agents }: { agents: Array<any> }) => {
     });
     setAddShow(false);
     setRealAgents([...realAgents, res.addAgent]);
+    setLoading(false);
     console.log(res);
   }
 
@@ -106,11 +112,12 @@ const Agents = ({ agents }: { agents: Array<any> }) => {
           ></Input>
           <SecondaryButton
             onClick={() => {
-              console.log(adduser, password), addAgent(adduser, password);
+              setLoading(true);
+              addAgent(adduser, password);
             }}
             className={styles.adddiv__button}
           >
-            Create
+            {loading ? "Creating..." : "Create"}
           </SecondaryButton>
         </div>
       </Popup>

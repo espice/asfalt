@@ -41,7 +41,7 @@ export default function SpyLoginPage() {
                 } else {
                   setError("");
                   setLoading(false);
-                  router.replace("/dadacon/");
+                  window.location.href = "/dadacon";
                 }
               }
             }}
