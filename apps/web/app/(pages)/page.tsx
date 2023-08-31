@@ -3,6 +3,7 @@
 import { axios } from "@/utils/axios";
 import React, { useState, useEffect } from "react";
 import SpyLoginPage from "./SpyLogin";
+import Landing from "./landing";
 
 export default function IndexPage() {
   const [granted, setGranted] = useState(false);
@@ -32,5 +33,7 @@ export default function IndexPage() {
 
   if (granted) return <SpyLoginPage />;
 
-  return <div>hello there!</div>;
+  return (<div>
+    <Landing />
+  </div>);
 }
