@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@cw23/config": "workspace:*",
-    "@types/bcrypt": "^5.0.0",
+    "@types/bcrypt": "^5.0.1",
     "@types/node": "20.5.3",
     "@types/react": "18.2.21",
     "@types/ua-parser-js": "^0.7.36",
